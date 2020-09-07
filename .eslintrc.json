@@ -29,7 +29,6 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
@@ -48,7 +47,8 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   },
   "settings": {
     "import/resolver": {
