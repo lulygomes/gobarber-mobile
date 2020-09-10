@@ -6,6 +6,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import api from '../../services/api';
+
 import Input from '../../componentes/Input';
 import Button from '../../componentes/Button';
 
@@ -49,16 +51,17 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        // await api.post('/users', data);
-
-        // history.push('/');
+        await api.post('/users', data);
 
         Alert.alert(
-          'Cadastro realizado',
-          'Você ja pode fazer seu logon no GoBarber!',
+          'Cadastro realizado!',
+          'Você ja pode fazer seu logon no GoBarber.',
         )
 
+        navigation.goBack();
+
       } catch (err) {
+        console.log(err)
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
@@ -73,7 +76,7 @@ const SignUp: React.FC = () => {
 
       }
     },
-    [],
+    [navigation],
   );
 
   return (
