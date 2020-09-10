@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core'
 
+import { useAuth } from '../../hooks/auth'
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../componentes/Input';
@@ -30,8 +32,12 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const passwordInputRef = useRef<TextInput>(null);
+
   const navigation = useNavigation();
+
+  const { signIn } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -49,10 +55,10 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        // await signIn({
-        //   email: data.email,
-        //   password: data.password,
-        // });
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
 
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -65,10 +71,10 @@ const SignIn: React.FC = () => {
         Alert.alert(
           'Erro na autenticação',
           'Ocorreu um erro ao fazer login, cheque as credenciais.',
-          )
+        );
       }
     },
-    [],
+    [signIn],
   );
 
 
