@@ -21,7 +21,13 @@ import {
   OpenDatePickerButton,
   OpenDatePickerButtonText,
   Calendar,
-  CalendarTitle,
+  Title,
+  Schedule,
+  Section,
+  SectionTitle,
+  SectionContent,
+  Hour,
+  HourText,
 } from './styles'
 import api from '../../services/api';
 
@@ -105,7 +111,7 @@ const CreateAppointment: React.FC = () => {
         return {
           hour,
           available,
-          fourFormatted: format(new Date().setHours(hour), 'HH:00'),
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
         }
       })
   }, [availability])
@@ -117,7 +123,7 @@ const CreateAppointment: React.FC = () => {
         return {
           hour,
           available,
-          fourFormatted: format(new Date().setHours(hour), 'HH:00'),
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
         }
       })
   }, [availability])
@@ -154,7 +160,7 @@ const CreateAppointment: React.FC = () => {
         />
       </ProvidersListContainer>
       <Calendar>
-        <CalendarTitle>Escolha um data</CalendarTitle>
+        <Title>Escolha um data</Title>
 
         <OpenDatePickerButton onPress={handleToogleDatePicker}>
           <OpenDatePickerButtonText>Selecionar outra data</OpenDatePickerButtonText>
@@ -169,6 +175,34 @@ const CreateAppointment: React.FC = () => {
           />}
       </Calendar>
 
+      <Schedule>
+        <Title>Escolha o horário</Title>
+
+        <Section>
+          <SectionTitle>Manhã</SectionTitle>
+
+          <SectionContent>
+            {morningAvailability.map(({ hourFormatted }) => (
+              <Hour key={hourFormatted}>
+                <HourText>{hourFormatted}</HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+
+        <Section>
+          <SectionTitle>Manhã</SectionTitle>
+
+          <SectionContent>
+            {afternoonAvailability.map(({ hourFormatted }) => (
+              <Hour key={hourFormatted}>
+                <HourText>{hourFormatted}</HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+
+      </Schedule>
 
     </Container>
   )
