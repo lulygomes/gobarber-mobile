@@ -3,9 +3,7 @@ import { View } from 'react-native';
 
 const AppointmentCreated: React.FC = () => {
   return (
-    <View>
-      Hello AppointmentCreated
-    </View>
+    <View/>
   )
 }
 
