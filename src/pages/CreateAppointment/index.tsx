@@ -29,6 +29,8 @@ import {
   SectionContent,
   Hour,
   HourText,
+  CreateAppointmentButton,
+  CreateAppointmentButtonText,
 } from './styles'
 import api from '../../services/api';
 
@@ -226,6 +228,10 @@ const CreateAppointment: React.FC = () => {
           </Section>
 
         </Schedule>
+
+        <CreateAppointmentButton onPress={() => {}}>
+          <CreateAppointmentButtonText>Agendar</CreateAppointmentButtonText>
+        </CreateAppointmentButton>
       </Content>
 
     </Container>
