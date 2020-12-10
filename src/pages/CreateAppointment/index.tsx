@@ -124,13 +124,18 @@ const CreateAppointment: React.FC = () => {
         date,
       })
 
-      navigate('AppointmentCreated', { date: date.getTime() })
+      const dateStemp = date.getTime();
+
+      console.log('Log da dateStemp',dateStemp);
+
+      navigate('AppointmentCreated', { date: dateStemp });
+
     } catch (err) {
       Alert.alert(
         'Erro ao criar o agendamento',
         'Ocorreu um erro ao tentar criar o agendamento, tente novamente.'
       )
-      console.log(err)
+      console.log('LOG AO CRIAR APP', err)
     }
   }, [navigate, selectedDate, selectedHour, selectedProvider])
 
