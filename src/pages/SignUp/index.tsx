@@ -20,7 +20,7 @@ import {
   Title,
   BackToSignIn,
   BackToSignInText
-} from './styled';
+} from './styles';
 
 interface SignUpFormData {
   name: string;
