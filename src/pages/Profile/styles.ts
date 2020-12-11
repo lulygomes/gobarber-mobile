@@ -36,3 +36,11 @@ export const BackButton = styled.TouchableOpacity`
 
   /* margin-top: 10px; */
 `;
+
+export const LogoutButton = styled.TouchableOpacity`
+  position: absolute;
+  top: -50px;
+  right: 10px;
+
+  /* margin-top: 10px; */
+`;
