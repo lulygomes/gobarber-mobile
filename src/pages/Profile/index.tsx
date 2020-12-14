@@ -5,6 +5,7 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import Icon from 'react-native-vector-icons/Feather';
+import ImagePicker from 'react-native-image-picker';
 
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
@@ -120,6 +121,23 @@ const Profile: React.FC = () => {
     [navigation, updateUser],
   );
 
+  const handleUpadateAvatar = useCallback(() => {
+    ImagePicker.launchCamera({
+      mediaType:'photo'
+    }, response => {
+      if (response.didCancel){
+        return;
+      }
+
+      if (response.errorMessage) {
+        Alert.alert('Erro ao atualizar seu avatar.');
+      }
+
+      console.log(response.uri)
+
+    })
+  }, [])
+
   const handleGoBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
@@ -143,7 +161,7 @@ const Profile: React.FC = () => {
             <Icon name="power" size={24} color="#999591" />
           </LogoutButton>
 
-          <UserAvatarButton onPress={() => { }}>
+          <UserAvatarButton onPress={handleUpadateAvatar}>
             <UserAvatar source={{ uri: user.avatar_url }} />
           </UserAvatarButton>
 
